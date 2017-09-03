@@ -1,6 +1,7 @@
 const express = require('express');
-const body-parser = require('body-parser');
+const bodyParser = require('body-parser');
 const cors = require('cors');
+const routes = require('./routes');
 
 var app = express();
 
@@ -11,8 +12,10 @@ app.use(bodyParser.urlencoded({
 
 app.use(cors());
 
-app.use(funciton(req, res, next) {
-  var err = new Error('Not Found')
+app.use('/movies', routes);
+
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
